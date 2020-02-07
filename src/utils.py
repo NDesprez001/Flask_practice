@@ -20,6 +20,16 @@ def has_no_empty_params(rule):
     arguments = rule.arguments if rule.arguments is not None else ()
     return len(defaults) >= len(arguments)
 
+def practice_1():
+    return """
+        <div style="text-align: center;">
+        <title>Komi-san's website</title>
+        <img src='https://image.myanimelist.net/ui/5pjpFizOF0WqHWXSGonzMSQ5rUJs3dN5-g9kjG6-NGc5DpxXlc2GRQpelVhG7rjXE6uve6ZFC4d0DHXg4IWhvlPbtt5yzvwmkMXkXWHQWMw'/>
+        <h1>Sashiburi dana! Genki desu ka?</h1>
+        Yokoso!</div>"""
+
+
+
 def generate_sitemap(app):
     links = []
     for rule in app.url_map.iter_rules():
@@ -32,6 +42,7 @@ def generate_sitemap(app):
     links_html = "".join(["<li><a href='" + y + "'>" + y + "</a></li>" for y in links])
     return """
         <div style="text-align: center;">
-        <img src='https://ucarecdn.com/3a0e7d8b-25f3-4e2f-add2-016064b04075/rigobaby.jpg' />
-        <h1>Hello Rigo!!</h1>
-        This is your api home, remember to specify a real endpoint path like: <ul style="text-align: left;">"""+links_html+"</ul></div>"
+        <title>Komi-san's website</title>
+        <img src='https://i.kym-cdn.com/photos/images/original/001/381/631/05e.gif' />
+        <h1>Konnichiwa, watashi no namae wa Komi desu!</h1>
+        Watashi no u~ebusaito, yokoso!: <ul style="text-align: left;">"""+links_html+"</ul></div>"""
