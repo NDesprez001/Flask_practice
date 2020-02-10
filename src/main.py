@@ -54,6 +54,23 @@ def first_page():
 def hey():
     return "What's up"
 
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    
+    json = request.get_json()
+    info = Persons(
+        username = json['first_name'],
+        email = json['email']
+    )
+    db.session.add(info)
+    db.session.commit()
+    return 'user added'
+      
+
+
+
 # @app.route('/zipcode info', methods=['POST', 'GET'])
 
 # def long_lad():
