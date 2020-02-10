@@ -6,8 +6,12 @@ from flask import Flask, request, jsonify, url_for
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
-from utils import APIException, generate_sitemap, practice_1
-from models import db
+from utils import APIException, generate_sitemap, practice_1, home_content
+from login import login_func
+from models import db, Persons
+# from Long_lad_zipcode import mk_dict, find_info
+import requests
+import json
 #from models import Person
 
 app = Flask(__name__)
@@ -30,37 +34,34 @@ def sitemap():
 
 @app.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
+    
+    return home_content(app), 200
 
-    response_body = {
-        "hello": "world"
-    }
-    print('Nice practice')
-
-    return """<div style="text-align: center;"><title>Komi-san's website</title>
-                <img src='https://i.pinimg.com/originals/1b/ce/fe/1bcefe9201469c9fbbd932e4c5ab971d.gif' />
-                <h1> There is english here</h1>
-                <p>Im learning Japanese on my free time, so i thought it would be fun to put some in here.</p></div>""", 200
 
 @app.route('/practicing', methods=['POST', 'GET'])
 def my_work():
-    
-    if request.method == 'POST':
 
-        json = request.get_json()
-
-        return json['name']
-    
     if request.method == 'GET':
         return 'You used GET method'
 
 @app.route('/first_page')
 def first_page():
-    return practice_1()
+    
+    return practice_1(app)
 
 
-@app.route('/second_page', methods=['POST', 'GET'])
+@app.route('/second page', methods=['POST', 'GET'])
 def hey():
     return "What's up"
+
+# @app.route('/zipcode info', methods=['POST', 'GET'])
+
+# def long_lad():
+#     return mk_dict(), find_info()
+
+
+    
+
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
